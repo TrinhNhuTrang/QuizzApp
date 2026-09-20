@@ -1,0 +1,7 @@
+{
+  "name": "quiz-master",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
