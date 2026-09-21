@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Quiz App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="quiz-container">
+
+    <!-- Header -->
+    <div class="quiz-header">
+
+      <span>
+        Question {{ currentQuestionIndex + 1 }}
+        / {{ questions.length }}
+      </span>
+
+      <span>
+        Score: {{ score }}
+      </span>
+
+    </div>
+
+    <!-- Progress -->
+    <ion-progress-bar
+      [value]="(currentQuestionIndex + 1) / questions.length">
+    </ion-progress-bar>
+
+    <!-- Question -->
+    <div
+      class="question-card"
+      *ngIf="currentQuestion">
+
+      <h2>
+        {{ currentQuestion.question }}
+      </h2>
+
+    </div>
+
+    <!-- Answers -->
+    <div
+      class="answers"
+      *ngIf="currentQuestion">
+
+      <button
+        *ngFor="
+          let option of currentQuestion.options;
+          let i = index
+        "
+        class="answer-button"
+
+        [class.selected]="selectedAnswer === i"
+
+        [class.correct]="
+          selectedAnswer !== null &&
+          i === currentQuestion.correctAnswer
+        "
+
+        [class.wrong]="
+          selectedAnswer === i &&
+          i !== currentQuestion.correctAnswer
+        "
+
+        (click)="selectAnswer(i)">
+
+        <span class="option-label">
+          {{ ['A', 'B', 'C', 'D'][i] }}
+        </span>
+
+        <span>
+          {{ option }}
+        </span>
+
+      </button>
+
+    </div>
+
+    <!-- Next Button -->
+    <ion-button
+      expand="block"
+      class="next-button"
+
+      [disabled]="selectedAnswer === null"
+
+      (click)="nextQuestion()">
+
+      {{ currentQuestionIndex === questions.length - 1
+          ? 'View Result'
+          : 'Next Question' }}
+
+      <ion-icon
+        name="arrow-forward-outline"
+        slot="end">
+      </ion-icon>
+
+    </ion-button>
+
+  </div>
+
+</ion-content>

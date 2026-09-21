@@ -1,20 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="home-container">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- Tiêu đề -->
+    <h1>Quiz App</h1>
+
+    <p class="subtitle">
+      Kiểm tra kiến thức<br />
+      và thử thách bản thân!
+    </p>
+
+    <!-- Hình minh họa -->
+     <div class="illustration">
+      <img src="assets/images/quizz.webp" alt="Quiz illustration" />
+    </div>
+
+    <!-- Mô tả -->
+    <p class="description">
+      Khám phá những câu hỏi thú vị,
+      nâng cao kiến thức và vui chơi.
+    </p>
+
+    <!-- Nút bắt đầu -->
+    <ion-button
+      expand="block"
+      class="start-button"
+      (click)="startQuiz()">
+      Bắt đầu làm bài
+    </ion-button>
+
+    <p class="footer-text">
+      Học • Chơi • Tiến bộ
+    </p>
+
   </div>
 </ion-content>

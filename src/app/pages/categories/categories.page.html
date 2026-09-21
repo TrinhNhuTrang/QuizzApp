@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chọn chủ đề</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="categories-container">
+
+    <h2>Bạn muốn học gì?</h2>
+
+    <p class="subtitle">
+      Chọn một chủ đề và bắt đầu thử thách của bạn.
+    </p>
+
+    <div class="category-grid">
+
+      <ion-card (click)="selectCategory('general')">
+        <h3>General Knowledge</h3>
+        <p>2 Questions</p>
+      </ion-card>
+
+      <ion-card (click)="selectCategory('science')">
+        <h3>Science</h3>
+        <p>1 Questions</p>
+      </ion-card>
+
+      <ion-card (click)="selectCategory('technology')">
+        <h3>Technology</h3>
+        <p>5 Questions</p>
+      </ion-card>
+
+      <ion-card (click)="selectCategory('history')">
+        <h3>History</h3>
+        <p>1 Questions</p>
+      </ion-card>
+
+    </div>
+
+  </div>
+
+</ion-content>
