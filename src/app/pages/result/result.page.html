@@ -1,45 +1,32 @@
 <ion-content [fullscreen]="true">
-
   <div class="result-container">
-
     <div class="trophy">
   <img src="assets/images/trophy.webp" alt="Quiz completed" />
+
 </div>
-
     <h1>Quiz Completed!</h1>
-
     <p class="subtitle">
       Great job! You have finished the quiz.
     </p>
-
     <div class="score-card">
-
       <p>Your Score</p>
-
       <h2>{{ score }} / {{ total }}</h2>
-
       <p>{{ getMessage() }}</p>
-
     </div>
 
     <ion-button
       expand="block"
       (click)="playAgain()">
-
       <ion-icon name="refresh-outline" slot="start"></ion-icon>
       Play Again
-
     </ion-button>
 
     <ion-button
       expand="block"
       fill="outline"
       (click)="goHome()">
-
       Back to Home
-
     </ion-button>
-
   </div>
 
 </ion-content>

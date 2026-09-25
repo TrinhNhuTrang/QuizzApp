@@ -52,36 +52,35 @@ export class QuizPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.category = params['category'] || 'general';
-
-      this.questions =
-        this.quizService.getQuestionsByCategory(this.category);
+      //Lấy danh sách câu hỏi
+      this.questions = this.quizService.getQuestionsByCategory(this.category);
     });
   }
-
   get currentQuestion(): Question | undefined {
     return this.questions[this.currentQuestionIndex];
   }
 
   selectAnswer(index: number) {
+    // Không chọn lại
     if (this.selectedAnswer !== null) {
       return;
     }
-
     this.selectedAnswer = index;
-
-    if (
-      this.currentQuestion &&
-      index === this.currentQuestion.correctAnswer
-    ) {
+    
+    // Tăng điểm nếu đúng
+    if (this.currentQuestion && index === this.currentQuestion.correctAnswer) {
       this.score++;
     }
   }
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
+      // Sang câu tiếp theo
       this.currentQuestionIndex++;
+      // Reset
       this.selectedAnswer = null;
     } else {
+      // Chuyển sang trang kết quả
       this.router.navigate(['/result'], {
         queryParams: {
           score: this.score,
