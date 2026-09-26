@@ -19,10 +19,8 @@ import {
   ],
 })
 export class ResultPage implements OnInit {
-
   score = 0;
   total = 0;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router
@@ -39,21 +37,17 @@ export class ResultPage implements OnInit {
     if (this.total === 0) {
       return 'Chưa có kết quả.';
     }
-
-    const percentage = (this.score / this.total) * 100;
-
+    const percentage =
+      (this.score / this.total) * 100;
     if (percentage === 100) {
       return 'Xuất sắc! Bạn đã trả lời đúng tất cả câu hỏi.';
     }
-
     if (percentage >= 80) {
       return 'Rất tốt! Hãy tiếp tục phát huy nhé.';
     }
-
     if (percentage >= 50) {
       return 'Khá tốt! Bạn có thể cố gắng hơn nữa.';
     }
-
     return 'Đừng nản lòng! Hãy thử lại nhé.';
   }
 
@@ -63,5 +57,9 @@ export class ResultPage implements OnInit {
 
   goHome() {
     this.router.navigate(['/home']);
+  }
+
+  viewHistory() {
+    this.router.navigate(['/history']);
   }
 }

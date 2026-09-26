@@ -5,35 +5,53 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="page-container">
 
-  <div class="categories-container">
+    <div class="welcome">
+      <h1>Bạn muốn học gì?</h1>
+      <p>Chọn một chủ đề để bắt đầu thử thách của bạn.</p>
+    </div>
 
-    <h2>Bạn muốn học gì?</h2>
+    <!-- Xem lịch sử -->
+    <ion-button
+      expand="block"
+      fill="outline"
+      class="history-button"
+      (click)="viewHistory()">
+      Xem lịch sử làm bài
+    </ion-button>
 
-    <p class="subtitle">
-      Chọn một chủ đề và bắt đầu thử thách của bạn.
-    </p>
-
+    <!-- Danh sách chủ đề -->
     <div class="category-grid">
-
-      <ion-card (click)="selectCategory('general')">
-        <h3>General Knowledge</h3>
+      <ion-card
+        class="category-card"
+        (click)="selectCategory('general')">
+        <div class="card-icon">🧠</div>
+        <h2>General Knowledge</h2>
         <p>2 Questions</p>
       </ion-card>
 
-      <ion-card (click)="selectCategory('science')">
-        <h3>Science</h3>
-        <p>1 Questions</p>
+      <ion-card
+        class="category-card"
+        (click)="selectCategory('science')">
+        <div class="card-icon">🔬</div>
+        <h2>Science</h2>
+        <p>1 Question</p>
       </ion-card>
 
-      <ion-card (click)="selectCategory('technology')">
-        <h3>Technology</h3>
+      <ion-card
+        class="category-card"
+        (click)="selectCategory('technology')">
+        <div class="card-icon">💻</div>
+        <h2>Technology</h2>
         <p>5 Questions</p>
       </ion-card>
-
-      <ion-card (click)="selectCategory('history')">
-        <h3>History</h3>
-        <p>1 Questions</p>
+      <ion-card
+        class="category-card"
+        (click)="selectCategory('history')">
+        <div class="card-icon">📚</div>
+        <h2>History</h2>
+        <p>1 Question</p>
       </ion-card>
 
     </div>

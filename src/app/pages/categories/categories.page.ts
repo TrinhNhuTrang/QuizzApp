@@ -7,7 +7,7 @@ import {
   IonTitle,
   IonContent,
   IonCard,
-  IonIcon
+  IonButton
 } from '@ionic/angular';
 
 @Component({
@@ -21,7 +21,7 @@ import {
     IonTitle,
     IonContent,
     IonCard,
-    IonIcon
+    IonButton
   ],
 })
 export class CategoriesPage {
@@ -33,4 +33,9 @@ export class CategoriesPage {
       queryParams: { category }
     });
   }
+
+  viewHistory() {
+    this.router.navigate(['/history']);
+  }
+
 }

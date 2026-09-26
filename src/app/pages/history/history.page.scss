@@ -1,0 +1,36 @@
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.empty h2 {
+  margin-bottom: 10px;
+}
+
+.empty p {
+  font-size: 14px;
+}
+
+ion-list {
+  margin-top: 10px;
+}
+
+ion-item {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+ion-label h2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+ion-label p {
+  margin: 4px 0;
+  color: #666;
+}
+
+.clear-button {
+  margin: 20px;
+}

@@ -16,6 +16,7 @@ import {
 
 import { Question } from '../../models/question.model';
 import { QuizService } from '../../services/quiz.service';
+import { HistoryService } from '../../services/history.service';
 
 @Component({
   selector: 'app-quiz',
@@ -44,10 +45,11 @@ export class QuizPage implements OnInit {
   category = '';
 
   constructor(
-    private quizService: QuizService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  private quizService: QuizService,
+  private historyService: HistoryService,
+  private route: ActivatedRoute,
+  private router: Router
+) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -79,14 +81,21 @@ export class QuizPage implements OnInit {
       this.currentQuestionIndex++;
       // Reset
       this.selectedAnswer = null;
+       // Chuyển sang trang kết quả
     } else {
-      // Chuyển sang trang kết quả
-      this.router.navigate(['/result'], {
-        queryParams: {
-          score: this.score,
-          total: this.questions.length
-        }
-      });
+  this.historyService.saveHistory(
+    this.category,
+    this.score,
+    this.questions.length
+  );
+
+  this.router.navigate(['/result'], {
+    queryParams: {
+      score: this.score,
+      total: this.questions.length,
+      category: this.category
     }
+  });
+}
   }
 }

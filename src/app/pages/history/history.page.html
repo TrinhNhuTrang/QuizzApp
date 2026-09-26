@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lịch sử làm bài</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div
+    class="empty"
+    *ngIf="history.length === 0">
+    <h2>Chưa có lịch sử</h2>
+    <p>  Hãy làm một bài quiz để xem lịch sử.</p>
+  </div>
+  <ion-list
+    *ngIf="history.length > 0">
+    <ion-item
+      *ngFor="let item of history">
+      <ion-label>
+        <h2> {{ item.category | titlecase }}</h2>
+
+        <p>
+          Điểm:
+          <strong>{{ item.score }}/{{ item.total }}</strong>
+        </p>
+        <p> {{ item.date | date:'dd/MM/yyyy HH:mm' }} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button
+    *ngIf="history.length > 0"
+    expand="block"
+    color="danger"
+    class="clear-button"
+    (click)="clearHistory()">
+
+    Xóa lịch sử
+  </ion-button>
+  <ion-button
+    expand="block"
+    fill="outline"
+    class="back-button"
+    (click)="goToCategories()">
+    Quay lại Trang chủ
+  </ion-button>
+
+</ion-content>
