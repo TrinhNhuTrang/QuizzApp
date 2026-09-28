@@ -7,7 +7,7 @@ import {
   IonCard, IonButton, IonIcon
 } from '@ionic/angular';
 
-import { QuizService, CategoryItem, QuestionItem } from '../quiz/quiz.service'; 
+import { QuizServices, CategoryItem, QuestionItem } from '../../services/quiz.service'; 
 
 @Component({
   selector: 'app-categories',
@@ -31,13 +31,12 @@ export class CategoriesPage implements OnInit {
   categoryQuestions: QuestionItem[] = [];
   newQuestion: QuestionItem = this.getEmptyQuestion();
 
-  constructor(private router: Router, private quizService: QuizService) {}
+  constructor(private router: Router, private quizService: QuizServices) {}
 
   ngOnInit() {
     this.loadData();
   }
 
-  // Khi quay lại trang sẽ update data mới nhất
   ionViewWillEnter() {
     this.loadData();
   }

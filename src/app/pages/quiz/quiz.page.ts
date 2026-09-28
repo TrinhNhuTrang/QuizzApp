@@ -6,7 +6,7 @@ import {
   IonProgressBar, IonButton
 } from '@ionic/angular';
 
-import { QuizService, QuestionItem } from '../quiz/quiz.service';
+import { QuizServices, QuestionItem } from '../../services/quiz.service';
 import { HistoryService } from '../../services/history.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class QuizPage implements OnInit {
   category = '';
 
   constructor(
-    private quizService: QuizService,
+    private quizService: QuizServices,
     private historyService: HistoryService,
     private route: ActivatedRoute,
     private router: Router
