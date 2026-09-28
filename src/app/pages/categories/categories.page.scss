@@ -1,159 +1,347 @@
+/* =========================
+   NỀN & HEADER
+   ========================= */
 ion-content {
-  --background: #f5f6ff;
+  --background: #f8f9fe; 
 }
 
 ion-toolbar {
   --background: #ffffff;
-  --color: #252544;
+  --color: #2b2744; 
   --border-width: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); 
 }
 
 ion-title {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .page-container {
-  padding: 28px 20px 32px;
+  padding: 32px 24px;
 }
 
+/* =========================
+   PHẦN WELCOME
+   ========================= */
 .welcome {
-  margin-bottom: 22px;
-}
+  margin-bottom: 28px;
 
-.welcome h1 {
-  margin: 0 0 8px;
-  font-size: 24px;
-  font-weight: 700;
-  color: #29284d;
-}
+  h1 {
+    margin: 0 0 8px;
+    font-size: 26px;
+    font-weight: 800;
+    color: #2b2744; 
+  }
 
-.welcome p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #777795;
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #7d7c9c; 
+  }
 }
 
 /* =========================
-   HISTORY BUTTON
+   NÚT XEM LỊCH SỬ & THÊM CHỦ ĐỀ
    ========================= */
-
 .history-button {
-  --border-radius: 14px;
+  --border-radius: 16px;
   --border-width: 1.5px;
-  --border-color: #4f6df5;
-  --color: #4162e8;
+  --border-color: #6a5be2; 
+  --color: #6a5be2;
+  --background: #ffffff;
 
-  height: 50px;
-  margin: 0 0 24px;
+  height: 52px;
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
 
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
+.add-button {
+  --background: #6a5be2; 
+  --border-radius: 16px;
+  --box-shadow: 0 6px 16px rgba(106, 91, 226, 0.25);
+  
+  height: 52px;
+  margin: 0 0 32px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* =========================
-   CATEGORY GRID
+   LƯỚI CATEGORY CARD
    ========================= */
-
 .category-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
-/* =========================
-   CATEGORY CARD
-   ========================= */
-
 .category-card {
+  position: relative;
   margin: 0;
-  min-height: 170px;
-
-  padding: 20px 14px;
-
+  min-height: 180px;
+  padding: 24px 16px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   text-align: center;
-
+  
   background: #ffffff;
-  border-radius: 18px;
-
-  box-shadow: 0 6px 18px rgba(54, 58, 110, 0.08);
-
+  border-radius: 20px; 
+  box-shadow: 0 8px 24px rgba(43, 39, 68, 0.04); 
   cursor: pointer;
+  
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+  &:active {
+    transform: scale(0.96);
+  }
 }
 
-.category-card:active {
-  transform: scale(0.97);
-}
-
+/* Biểu tượng Icon (Có nền vo tròn) */
 .card-icon {
-  width: 52px;
-  height: 52px;
-
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  margin-bottom: 12px;
-
-  border-radius: 16px;
-
-  background: #f0f2ff;
-
-  font-size: 25px;
+  margin-bottom: 16px;
+  
+  border-radius: 20px;
+  background: #f2f3fa; 
+  font-size: 28px;
 }
 
+/* Tên chủ đề */
 .category-card h2 {
   margin: 0;
-
-  max-width: 130px;
-
   font-size: 16px;
-  line-height: 1.25;
-  font-weight: 700;
-
-  color: #29284d;
+  line-height: 1.3;
+  font-weight: 800;
+  color: #2b2744; 
 }
 
+/* Số lượng câu hỏi */
 .category-card p {
-  margin: 7px 0 0;
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #9f9eb8; 
+}
 
-  font-size: 12px;
 
-  color: #9a9ab5;
+.card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+
+  .action-btn {
+    background: #f2f3fa;
+    border: none;
+    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+    color: #2b2744;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #e2e4f0;
+    }
+    
+    &.delete:hover {
+      background: #ffebeb;
+      color: #e05252;
+    }
+  }
 }
 
 /* =========================
-   SMALL SCREEN
+   MODAL STYLING (Form Thêm/Sửa)
    ========================= */
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(43, 39, 68, 0.6); /* Nền mờ tím than */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
 
-@media (max-width: 360px) {
+.custom-modal {
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 
-  .page-container {
-    padding-left: 16px;
-    padding-right: 16px;
+  h3 {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: #2b2744;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
-  .category-grid {
+  .form-group {
+    margin-bottom: 16px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #7d7c9c;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #eef0f6;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      background: #ffffff !important; 
+      color: #2b2744 !important; 
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: #6a5be2; 
+      }
+      
+      &::placeholder {
+        color: #b5b4c9;
+      }
+    }
+  }
+
+  .modal-buttons {
+    display: flex;
     gap: 12px;
+    margin-top: 24px;
+
+    button {
+      flex: 1;
+      height: 48px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+      
+      &:active {
+        opacity: 0.8;
+      }
+    }
+
+    .btn-cancel {
+      background: #f2f3fa;
+      color: #6a5be2;
+    }
+
+    .btn-save {
+      background: #6a5be2;
+      color: white;
+      box-shadow: 0 4px 12px rgba(106, 91, 226, 0.2);
+    }
+  }
+}
+
+/* =========================
+   STYLE CHO MODAL CÂU HỎI
+   ========================= */
+.question-modal {
+  max-width: 95% !important; 
+  max-height: 85vh;
+  overflow-y: auto; 
+  
+  h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #2b2744;
+    margin: 16px 0 12px;
+  }
+}
+
+.divider {
+  border: 0;
+  height: 2px;
+  background: #eef0f6;
+  margin: 20px 0;
+}
+
+.question-list {
+  max-height: 140px;
+  overflow-y: auto;
+  border: 2px solid #eef0f6;
+  border-radius: 14px;
+  padding: 8px;
+  background: #f8f9fe;
+
+  .empty-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #9f9eb8;
+    text-align: center;
+    padding: 16px;
   }
 
-  .category-card {
-    min-height: 155px;
-  }
+  .question-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(43, 39, 68, 0.03);
 
-  .category-card h2 {
-    font-size: 15px;
+    .q-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2b2744;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 75%;
+    }
+
+    .q-delete {
+      background: #ffebeb;
+      color: #e05252;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
   }
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }

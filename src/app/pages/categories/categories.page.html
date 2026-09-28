@@ -6,56 +6,111 @@
 
 <ion-content [fullscreen]="true">
   <div class="page-container">
-
     <div class="welcome">
       <h1>Bạn muốn học gì?</h1>
       <p>Chọn một chủ đề để bắt đầu thử thách của bạn.</p>
     </div>
 
-    <!-- Xem lịch sử -->
-    <ion-button
-      expand="block"
-      fill="outline"
-      class="history-button"
-      (click)="viewHistory()">
+    <ion-button expand="block" fill="outline" class="history-button" (click)="viewHistory()">
       Xem lịch sử làm bài
     </ion-button>
 
-    <!-- Danh sách chủ đề -->
+    <ion-button expand="block" class="add-button" (click)="openAddModal()">
+      + Thêm chủ đề mới
+    </ion-button>
+
     <div class="category-grid">
-      <ion-card
-        class="category-card"
-        (click)="selectCategory('general')">
-        <div class="card-icon">🧠</div>
-        <h2>General Knowledge</h2>
-        <p>2 Questions</p>
-      </ion-card>
+      <ion-card class="category-card" *ngFor="let cat of categories" (click)="selectCategory(cat.id)">
+        
+        <div class="card-actions">
+          <button class="action-btn edit" (click)="openEditModal(cat, $event)" title="Sửa Chủ đề">✏️</button>
+          <!-- Nút quản lý câu hỏi mới thêm -->
+          <button class="action-btn config" (click)="openQuestionModal(cat.id, $event)" title="Quản lý câu hỏi">⚙️</button>
+          <button class="action-btn delete" (click)="deleteCategory(cat.id, $event)" title="Xóa Chủ đề">🗑️</button>
+        </div>
 
-      <ion-card
-        class="category-card"
-        (click)="selectCategory('science')">
-        <div class="card-icon">🔬</div>
-        <h2>Science</h2>
-        <p>1 Question</p>
+        <div class="card-icon">{{ cat.icon }}</div>
+        <h2>{{ cat.name }}</h2>
+        <p>{{ cat.questionsCount }}</p>
       </ion-card>
-
-      <ion-card
-        class="category-card"
-        (click)="selectCategory('technology')">
-        <div class="card-icon">💻</div>
-        <h2>Technology</h2>
-        <p>5 Questions</p>
-      </ion-card>
-      <ion-card
-        class="category-card"
-        (click)="selectCategory('history')">
-        <div class="card-icon">📚</div>
-        <h2>History</h2>
-        <p>1 Question</p>
-      </ion-card>
-
     </div>
+  </div>
 
+  <!-- Modal Thêm / Sửa chủ đề (Giữ nguyên) -->
+  <div *ngIf="isModalOpen" class="custom-modal-backdrop">
+    <div class="custom-modal">
+      <h3>{{ isEditMode ? 'Chỉnh sửa chủ đề' : 'Thêm chủ đề mới' }}</h3>
+      <div class="form-group">
+        <label>Tên chủ đề:</label>
+        <input type="text" [(ngModel)]="currentCategory.name" placeholder="Nhập tên..." />
+      </div>
+      <div class="form-group">
+        <label>Biểu tượng (Icon emoji):</label>
+        <input type="text" [(ngModel)]="currentCategory.icon" placeholder="VD: 🧠..." />
+      </div>
+      <div class="modal-buttons">
+        <button class="btn-cancel" (click)="closeModal()">Hủy</button>
+        <button class="btn-save" (click)="saveCategory()">Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL QUẢN LÝ CÂU HỎI (MỚI) -->
+  <div *ngIf="isQuestionModalOpen" class="custom-modal-backdrop">
+    <div class="custom-modal question-modal">
+      <h3>Quản lý Câu hỏi</h3>
+      
+      <!-- Danh sách câu hỏi hiện tại -->
+      <div class="question-list">
+        <div class="empty-text" *ngIf="categoryQuestions.length === 0">Chưa có câu hỏi nào.</div>
+        <div class="question-item" *ngFor="let q of categoryQuestions; let i = index">
+          <div class="q-text"><strong>Câu {{i+1}}:</strong> {{ q.question }}</div>
+          <button class="q-delete" (click)="deleteQuestion(q.id)">Xóa</button>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Form thêm câu hỏi mới -->
+      <h4>Thêm câu hỏi mới</h4>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="newQuestion.question" placeholder="Nội dung câu hỏi..." />
+      </div>
+      
+      <div class="options-grid">
+        <div class="form-group">
+          <label>Đáp án A</label>
+          <input type="text" [(ngModel)]="newQuestion.options[0]" placeholder="Nhập A..." />
+        </div>
+        <div class="form-group">
+          <label>Đáp án B</label>
+          <input type="text" [(ngModel)]="newQuestion.options[1]" placeholder="Nhập B..." />
+        </div>
+        <div class="form-group">
+          <label>Đáp án C</label>
+          <input type="text" [(ngModel)]="newQuestion.options[2]" placeholder="Nhập C..." />
+        </div>
+        <div class="form-group">
+          <label>Đáp án D</label>
+          <input type="text" [(ngModel)]="newQuestion.options[3]" placeholder="Nhập D..." />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Chọn Đáp án đúng:</label>
+        <select [(ngModel)]="newQuestion.correctAnswer" class="correct-select">
+          <option [ngValue]="0">Đáp án A</option>
+          <option [ngValue]="1">Đáp án B</option>
+          <option [ngValue]="2">Đáp án C</option>
+          <option [ngValue]="3">Đáp án D</option>
+        </select>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-cancel" (click)="closeQuestionModal()">Đóng</button>
+        <button class="btn-save" (click)="addQuestion()">+ Thêm Câu Hỏi</button>
+      </div>
+    </div>
   </div>
 
 </ion-content>

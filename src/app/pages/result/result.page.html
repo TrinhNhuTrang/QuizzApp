@@ -1,30 +1,26 @@
 <ion-content [fullscreen]="true">
   <div class="result-container">
-
+    <!-- THÊM ĐOẠN NÀY ĐỂ HIỂN THỊ ICON CÚP -->
+    <div class="trophy">
+      <ion-icon name="trophy"></ion-icon>
+    </div>
+    
     <h1>Hoàn thành!</h1>
-    <h2>{{ score }} / {{ total }}</h2>
-    <p class="message">{{ getMessage() }}</p>
+    
+    <div class="score-card">
+      <p class="subtitle">Điểm số của bạn</p>
+      <h2>{{ score }} / {{ total }}</h2>
+      <p class="message">{{ getMessage() }}</p>
+    </div>
 
-    <ion-button
-      expand="block"
-      (click)="playAgain()">
+    <ion-button expand="block" (click)="playAgain()">
       Làm lại
     </ion-button>
-
-    <ion-button
-      expand="block"
-      fill="outline"
-      (click)="viewHistory()">
+    <ion-button expand="block" fill="outline" (click)="viewHistory()">
       Xem lịch sử
     </ion-button>
-
-    <ion-button
-      expand="block"
-      fill="clear"
-      (click)="goHome()">
+    <ion-button expand="block" fill="clear" (click)="goHome()">
       Về trang chủ
     </ion-button>
-
   </div>
-
 </ion-content>
