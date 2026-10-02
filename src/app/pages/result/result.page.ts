@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   IonContent,
-  IonIcon,
   IonButton
 } from '@ionic/angular';
 
@@ -14,7 +13,6 @@ import {
   standalone: true,
   imports: [
     IonContent,
-    IonIcon,
     IonButton
   ],
 })

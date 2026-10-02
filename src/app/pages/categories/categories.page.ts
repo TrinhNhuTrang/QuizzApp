@@ -3,8 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
-  IonHeader, IonToolbar, IonTitle, IonContent,
-  IonCard, IonButton, IonIcon
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonCard,
+  IonButton
 } from '@ionic/angular';
 
 import { QuizServices, CategoryItem, QuestionItem } from '../../services/quiz.service'; 
@@ -15,9 +19,15 @@ import { QuizServices, CategoryItem, QuestionItem } from '../../services/quiz.se
   styleUrls: ['./categories.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle,
-    IonContent, IonCard, IonButton, IonIcon
-  ],
+  CommonModule,
+  FormsModule,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonCard,
+  IonButton
+],
 })
 export class CategoriesPage implements OnInit {
   categories: CategoryItem[] = [];
@@ -55,7 +65,7 @@ export class CategoriesPage implements OnInit {
 
   // --- CHỦ ĐỀ ---
   getEmptyCategory(): CategoryItem {
-    return { id: '', name: '', icon: '📝', questionsCount: '0 Question' };
+    return { id: '', name: '', questionsCount: '0 Câu' };
   }
 
   openAddModal() {
@@ -151,7 +161,7 @@ export class CategoriesPage implements OnInit {
     const cat = this.categories.find(c => c.id === this.selectedCategoryId);
     
     if (cat) {
-      cat.questionsCount = `${totalQs} Question${totalQs !== 1 ? 's' : ''}`;
+      cat.questionsCount = `${totalQs} Câu`;
       this.quizService.updateCategory(cat);
       this.loadData();
     }

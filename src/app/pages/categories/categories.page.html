@@ -28,8 +28,6 @@
           <button class="action-btn config" (click)="openQuestionModal(cat.id, $event)" title="Quản lý câu hỏi">⚙️</button>
           <button class="action-btn delete" (click)="deleteCategory(cat.id, $event)" title="Xóa Chủ đề">🗑️</button>
         </div>
-
-        <div class="card-icon">{{ cat.icon }}</div>
         <h2>{{ cat.name }}</h2>
         <p>{{ cat.questionsCount }}</p>
       </ion-card>
@@ -43,10 +41,6 @@
       <div class="form-group">
         <label>Tên chủ đề:</label>
         <input type="text" [(ngModel)]="currentCategory.name" placeholder="Nhập tên..." />
-      </div>
-      <div class="form-group">
-        <label>Biểu tượng (Icon emoji):</label>
-        <input type="text" [(ngModel)]="currentCategory.icon" placeholder="VD: 🧠..." />
       </div>
       <div class="modal-buttons">
         <button class="btn-cancel" (click)="closeModal()">Hủy</button>

@@ -36,6 +36,7 @@ export class QuizPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.category = params['category'] || 'general';
+      //lấy danh sách câu hỏi thuộc chủ đề đang chọn
       this.questions = this.quizService.getQuestionsByCategory(this.category);
     });
   }
